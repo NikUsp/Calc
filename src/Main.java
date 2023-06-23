@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
         Main result = new Main();
         System.out.print("Введите строку с двумя целыми операндами от 1 до 10 включительно и один оператор (+, -, /, *: ");
@@ -10,10 +10,10 @@ public class Main {
         System.out.println("Output:\n" + answer);
         input.close();
     }
-    public static String calc(String input) {
+    public static String calc(String input) throws Exception {
         String myStr1 = "";
         String myStr2 = "";
-        String outstr = "формат математической операции не удовлетворяет заданию - два целых операнда от 1 до 10 включительно и один оператор (+, -, /, *";
+        String outstr = "формат математической операции не удовлетворяет заданию - два целых операнда от 1 до 10 включительно и один оператор (+, -, /, *)";
         int j;
         int k = 1;
         double ans;
@@ -32,20 +32,16 @@ public class Main {
             }
         }
         if ("".equalsIgnoreCase(myStr1)) {
-            System.out.println(outstr);
-            System.exit(0);
+            throw new Exception(outstr);
         }
         if ("".equalsIgnoreCase(myStr2)) {
-            System.out.println(outstr);
-            System.exit(0);
+            throw new Exception(outstr);
         }
         if (Double.parseDouble(myStr1) > 10 || Double.parseDouble(myStr1) < 1) {
-            System.out.println(outstr);
-            System.exit(0);
+            throw new Exception(outstr);
         }
         if (Double.parseDouble(myStr2) > 10 || Double.parseDouble(myStr2) < 1) {
-            System.out.println(outstr);
-            System.exit(0);
+            throw new Exception(outstr);
         }
         switch (charArray[k - 1]) {
             case '+':
@@ -61,7 +57,7 @@ public class Main {
                 ans = (int) (Double.parseDouble(myStr1) / Double.parseDouble(myStr2));
                 break;
             default:
-                return ("строка не является математической операцией");
+                throw new Exception(outstr);
 
         }
         return (Double.parseDouble(myStr1) + " " + charArray[k - 1] + " " + Double.parseDouble(myStr2) + " = " + ans);
